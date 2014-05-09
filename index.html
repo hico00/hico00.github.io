@@ -1,7 +1,43 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no"> 
+        <meta name="apple-mobile-web-app-capable" content="yes"> 
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <title>おにごっこ</title>
+        <script type="text/javascript" src="enchant.js"></script>
+        <script type="text/javascript" src="game_1.js"></script>
+        <style type="text/css">
+            html * {
+                margin:0px;
+                padding:0px;
+            }
+            body {
+                text-align:center;
+                font-family:メイリオ, sans-serif;
+                font-size:16px;
+            }
+            div {
+                position:relative;
+            }
+            #enchant-stage { 
+                   border:solid 1px black;
+                   width:400px;
+                   height:400px;
+            }
+            #game {
+                width:740px;
+            }
+        </style>
+    </head>
+    <body>
+    <div id="all_frame">
+        <div id="contents">
+            <div id="game">
+                <div id="enchant-stage"></div>
+            </div>
+        </div>
+    </div>
+    </body>
 </html>
