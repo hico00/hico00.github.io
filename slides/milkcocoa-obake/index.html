@@ -115,7 +115,7 @@
 				</section>
 
 				<section>
-					<h2>Milkcocoa</h2>
+					<h2>Milkcocoa【スマホ側】</h2>
 					<pre><code class="hljs" data-trim contenteditable>
 // おばけの性別を変更したとき
 var obakeDs = milkcocoa.dataStore('obake');
@@ -127,6 +127,22 @@ obakeDs.push({obakeId : random_id, type : 'f'});
 var moveDs = milkcocoa.dataStore('move');
 moveDs.send({obakeId : random_id, key : 'up'});
 moveDs.push({obakeId : random_id, key : 'up'});
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Milkcocoa【PC側】</h2>
+					<pre><code class="hljs" data-trim contenteditable>
+// datastoreのsendイベントを監視
+var obakeDs = milkcocoa.dataStore('obake');
+var moveDs = milkcocoa.dataStore('move');
+obakeDs.on('send', function(){
+	/* 新しいおばけが追加されたとき */
+	/* おばけの性別がかわったとき */
+});
+moveDs.on('send', function(){
+	/* おばけがうごいたとき */
+});
 					</code></pre>
 				</section>
 
