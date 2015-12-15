@@ -1,0 +1,69 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Three.js サンプル</title>
+</head>
+<body>
+  
+<script src="three.min.js"></script>
+<script src="TrackballControls.js"></script>
+<script>  
+// 参考：http://ara-web.net/blog/webgl/post-1596/
+
+//シーンの作成
+var scene = new THREE.Scene();
+
+//シーンの大きさ
+var scene_w  = 600;//横
+var scene_h = 400;//縦
+     
+//レンダラの初期化
+var renderer = new THREE.WebGLRenderer({ antialias:true });
+renderer.setSize( scene_w, scene_h );
+renderer.setClearColor(0xCCffff, 1);//背景色
+document.body.appendChild(renderer.domElement);//最後に生成した要素を追加
+
+//カメラの設定
+var fov    = 60; //画角
+var aspect = scene_w / scene_h; //撮影の縦横比
+var near   = 1; //nearより近い領域は表示されない
+var far    = 1000; //farより遠い領域は表示されない
+     
+var camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
+camera.position.set( 0, 150, 1000 );//カメラ位置
+
+// ライトを追加
+var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.1 );
+directionalLight.position.set( 0, 150,1000 );
+scene.add( directionalLight );
+
+// AmbientLightライトを追加
+light = new THREE.AmbientLight(0xFFFFFF);
+scene.add(light);
+
+trackball = new THREE.TrackballControls( camera );//トラックボール
+
+//Blenderのオブジェクトを読み込む
+loader = new THREE.JSONLoader();
+loader.load( 'json/obake3d.json', function ( geometry, materials ) { //第１引数はジオメトリー、第２引数はマテリアルが自動的に取得）
+    var faceMaterial = new THREE.MeshFaceMaterial( materials );
+    mesh = new THREE.Mesh( geometry, faceMaterial );
+    mesh.position.set( 0,0,0);
+    mesh.scale.set( 100, 100, 100 );
+    scene.add( mesh );
+    
+    //アニメーション
+    ( function renderLoop () {
+        requestAnimationFrame( renderLoop );
+        // 表示する
+        renderer.render( scene, camera );
+		trackball.update();
+    } )();
+// 表示する
+renderer.render( scene, camera );
+} );
+
+</script>
+ 
+</body>
+</html>
